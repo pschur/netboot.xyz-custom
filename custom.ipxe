@@ -7,7 +7,7 @@
 echo Hello world!
 sleep 10
 
-chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master/custom1.ipxe || goto custom_exit
+chain https://raw.githubusercontent.com/pschur/netboot.xyz-custom/master/custom.ipxe.example || goto custom_exit
 
 :custom_exit
 exit 0
