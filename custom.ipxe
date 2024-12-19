@@ -4,10 +4,9 @@
 ###
 
 :start
-echo Hello world!
-sleep 10
-
-chain https://raw.githubusercontent.com/pschur/netboot.xyz-custom/master/custom.ipxe.example || goto custom_exit
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd https://ftp.fau.de/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
+boot || goto custom_exit
 
 :custom_exit
 exit 0
