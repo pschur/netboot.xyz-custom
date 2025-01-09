@@ -17,13 +17,18 @@ goto ${custom_choice}
 goto custom_exit
 
 :windows11
-chain https://mirror.paul-plus.de/boot/windows/11_pe.ipxe || goto custom
+chain https://mirror.paul-plus.de/boot/windows/11_pe.ipxe || goto error
 
 :start_ubuntu
 kernel https://boot.netboot.xyz/memdisk raw iso
 initrd https://ftp.fau.de/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
 ### chain https://ftp.fau.de/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
 boot || goto custom
+
+:error
+echo An error occurred. Press enter to continue...
+prompt --key 0x0d --timeout 0 Press Enter to continue
+goto custom
 
 :custom_exit
 exit 0
