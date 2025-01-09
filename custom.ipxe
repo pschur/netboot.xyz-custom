@@ -3,11 +3,27 @@
 ### netboot.xyz-custom menu
 ###
 
-:start
-### kernel https://boot.netboot.xyz/memdisk raw iso
-### initrd https://ftp.fau.de/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
-chain https://ftp.fau.de/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
-boot || goto custom_exit
+:custom
+clear custom_choice
+menu This is a Test Menu
+item --gap Windows 11 Test
+item windows11 ${space} Loading throug WinPE
+item --gap General Tests
+item start_ubuntu ${space} Ubuntu ISO load
+item custom_exit Beenden
+choose custom_choice || goto custom_exit
+echo ${cls}
+goto ${custom_choice}
+goto custom_exit
+
+:windows11
+chain https://mirror.paul-plus.de/boot/windows/11_pe.ipxe || goto custom
+
+:start_ubuntu
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd https://ftp.fau.de/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
+### chain https://ftp.fau.de/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
+boot || goto custom
 
 :custom_exit
 exit 0
