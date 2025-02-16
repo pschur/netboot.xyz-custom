@@ -10,6 +10,7 @@ item --gap Windows 11 Test
 item windows11 ${space} Loading throug WinPE
 item --gap General Tests
 item start_ubuntu ${space} Ubuntu ISO load
+item start_raspian ${space} Raspian ISO load
 item custom_exit Beenden
 choose custom_choice || goto custom_exit
 echo ${cls}
@@ -23,6 +24,11 @@ chain http://212.132.75.25:3040/boot/windows/11_pe.ipxe || goto error
 kernel https://boot.netboot.xyz/memdisk raw iso
 initrd https://ftp.fau.de/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
 ### chain https://ftp.fau.de/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
+boot || goto custom
+
+:start_raspian
+kernel https://boot.netboot.xyz/memdisk raw iso
+initrd https://downloads.raspberrypi.com/rpd_x86/images/rpd_x86-2022-07-04/2022-07-01-raspios-bullseye-i386.iso
 boot || goto custom
 
 :error
