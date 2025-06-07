@@ -6,6 +6,8 @@
 :custom
 clear custom_choice
 menu This is a Test Menu
+item --gap Windows
+item windows10_64x ${space} Windows 10 (64 Bit)
 item --gap Windows 11 Test
 item windows11 ${space} Loading throug WinPE
 item --gap General Tests
@@ -16,6 +18,9 @@ choose custom_choice || goto custom_exit
 echo ${cls}
 goto ${custom_choice}
 goto custom_exit
+
+:windows10_64x
+chain https://go.microsoft.com/fwlink/p/?LinkID=2208844&clcid=0x407&culture=de-de&country=DE || goto error
 
 :windows11
 chain http://212.132.75.25:3040/boot/windows/11_pe.ipxe || goto error
