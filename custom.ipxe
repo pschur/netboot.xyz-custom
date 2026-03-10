@@ -11,6 +11,7 @@ item windows10_64x ${space} Windows 10 (64 Bit)
 item --gap Windows 11 Test
 item windows11 ${space} Loading throug WinPE
 item --gap General Tests
+item start_librework ${space} LibreWork Space ISO load
 item start_ubuntu ${space} Ubuntu ISO load
 item start_raspian ${space} Raspian ISO load
 item custom_exit Beenden
@@ -34,6 +35,10 @@ boot || goto custom
 :start_raspian
 kernel https://boot.netboot.xyz/memdisk raw iso
 initrd https://downloads.raspberrypi.com/rpd_x86/images/rpd_x86-2022-07-04/2022-07-01-raspios-bullseye-i386.iso
+boot || goto custom
+
+:start_librework
+sanboot https://github.com/Jean28518/libre-workspace/releases/download/v0.10.9/libre-workspace.iso || goto error
 boot || goto custom
 
 :error
